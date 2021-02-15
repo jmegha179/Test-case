@@ -1,31 +1,18 @@
-import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+  let component: AppComponent;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(() =>{
+    component = new AppComponent();
+  })
+  it('Should increment total vote when upgraded' , () => {
+    component.upVote();
+    expect(component.totalVote).toBe(1)
+  })
 
-  it(`should have as title 'TestCase'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('TestCase');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('TestCase app is running!');
-  });
+  it('Should decrement total vote when downgraded' , () => {
+    component.downVote();
+    expect(component.totalVote).toBe(-1)
+  })
 });
